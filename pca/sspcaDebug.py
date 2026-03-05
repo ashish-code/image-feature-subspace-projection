@@ -7,7 +7,7 @@ Created on 18 Jan 2012
 import numpy as np
 from sklearn import svm
 from sklearn.metrics import roc_curve, auc, f1_score, precision_score, recall_score, precision_recall_curve
-from sklearn.cross_validation import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold
 
 rootDir = '/vol/vssp/diplecs/ash/Data/'
 iwmDir = '/ImgWrdMat/'
@@ -25,7 +25,7 @@ pcaData = np.loadtxt(pcaDataFileName, dtype=np.float,delimiter=' ')
 
 X = pcaData[:,:-1]
 y = pcaData[:,-1]
-cv = StratifiedKFold(y,k=10)
+cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
 clsProb = svm.SVC(kernel='rbf',probability=True)
 cls = svm.SVC(kernel='rbf',probability=False)
 roc_aucArr = np.zeros((10,1),np.float)
@@ -33,7 +33,7 @@ pr_aucArr = np.zeros((10,1),np.float)
 f1scoreArr = np.zeros((10,1),np.float)
 precisionArr = np.zeros((10,1),np.float)
 recallArr = np.zeros((10,1),np.float)
-for i,(train,test) in enumerate(cv):
+for i,(train,test) in enumerate(cv.split(X,y)):
     probas_ = clsProb.fit(X[train],y[train]).predict_proba(X[test])
     pred = cls.fit(X[train],y[train]).predict(X[test])
     # Compute ROC curve and area the curve

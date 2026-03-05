@@ -7,7 +7,7 @@ for various combinations of dictionary sizes
 
 
 import numpy as np
-from optparse import OptionParser
+import argparse
 import sys
 import matplotlib.pyplot as plt
 

@@ -39,7 +39,7 @@ def dimred(iCategory,catname):
     dataOut = pcanode.execute(dataOri)
     outFilename = outPath+catname+'.'+dataExt
     np.savetxt(outFilename, dataOut, delimiter=' ')
-    print '%s written.' %(outFilename)
+    print('%s written.' %(outFilename)
 
 def main():   
     catList = [catfilename.split('.')[0] for catfilename in catFileList]

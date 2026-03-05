@@ -8,9 +8,9 @@ import os
 import numpy as np
 import mdp
 from scipy.cluster.vq import kmeans2,vq
-from scikits.learn import svm
-from scikits.learn.metrics import roc_curve,precision_recall_curve,auc
-from scikits.learn.cross_val import StratifiedKFold
+from sklearn import svm
+from sklearn.metrics import roc_curve,precision_recall_curve,auc
+from sklearn.model_selection import StratifiedKFold
 import matplotlib.pyplot as plt
 import sys
 
@@ -164,12 +164,12 @@ def main():
             y2 = np.where(y2==posLabel,1,y2)
             
             #cross-validation
-            cv = StratifiedKFold(y2, k=nFold)
+            cv = StratifiedKFold(n_splits=nFold, shuffle=True, random_state=42)
             #select classifier
             classifier = svm.SVC(kernel=kernelType, probability=True)
             metricstemp = np.zeros((nFold,nMetrics),np.float)
             
-            for i, (train, test) in enumerate(cv):
+            for i,(train,test) in enumerate(cv.split(X,y)):
                 probas_ = classifier.fit(X[train], y2[train]).predict_proba(X[test])
                 fpr, tpr, thresholds = roc_curve(y2[test], probas_[:,1]) #@UnusedVariable
                 roc_auc = auc(fpr, tpr)

@@ -8,9 +8,9 @@ import os
 import numpy as np
 import mdp
 from scipy.cluster.vq import kmeans2,vq
-from scikits.learn import svm
-from scikits.learn.metrics import roc_curve,precision_recall_curve,auc
-from scikits.learn.cross_val import StratifiedKFold
+from sklearn import svm
+from sklearn.metrics import roc_curve,precision_recall_curve,auc
+from sklearn.model_selection import StratifiedKFold
 import matplotlib.pyplot as plt
 import sys
 
@@ -60,7 +60,7 @@ def dimred(iCategory,catname,nOutputDim):
         iSamples = nDimSamples
     pcanode.train(dataOri[np.random.randint(0, high=nInputVec, size=iSamples),:])
     dataOut = pcanode.execute(dataOri)
-    print '%s projected...' % (catname)
+    print('%s projected...' % (catname)
     return dataOut
 
 def getCatMap(dataset):
@@ -168,12 +168,12 @@ def main():
             #y2 = np.where(y2==posLabel,1,y2)
             
             #cross-validation
-            cv = StratifiedKFold(y, k=nFold)
+            cv = StratifiedKFold(n_splits=nFold, shuffle=True, random_state=42)
             #select classifier
             classifier = svm.SVC(kernel=kernelType, probability=True)
             metricstemp = np.zeros((nFold,nMetrics),np.float)
             
-            for i, (train, test) in enumerate(cv):
+            for i,(train,test) in enumerate(cv.split(X,y)):
                 probas_ = classifier.fit(X[train], y[train]).predict_proba(X[test])
                 print y[test]
                 print probas_[:,1]
@@ -209,7 +209,7 @@ def main():
     try:
         np.savez(outPath1,rocauc,mapauc)
     except:
-        print 'unable to write file %s' % (outPath1)
+        print('unable to write file %s' % (outPath1)
 
     plt.show()
     plt.close()

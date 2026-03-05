@@ -6,7 +6,7 @@ plot the sspca experiment results
 
 
 import numpy as np
-from optparse import OptionParser
+import argparse
 import sys
 
 

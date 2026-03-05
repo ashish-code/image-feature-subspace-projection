@@ -5,11 +5,11 @@ Compute the classification score of the original data
 '''
 
 import numpy as np
-from optparse import OptionParser
+import argparse
 import sys
 from sklearn import svm
 from sklearn.metrics import f1_score, precision_score, recall_score
-from sklearn.cross_validation import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold
 
 #acquire program arguments
 parser = OptionParser()
@@ -54,7 +54,7 @@ def computeSVMscore(dim):
     try:  
         computePerformanceMetrics(dataset,dim)
     except:
-        print 'Error: %s %d'%(dataset,dim)
+        print('Error: %s %d'%(dataset,dim)
     
 def computePerformanceMetrics(dataset,dim):
     catmap = getCatMap(dataset)
@@ -73,7 +73,7 @@ def computePerformanceMetrics(dataset,dim):
         pcaData = np.loadtxt(dataFileName, dtype=np.float,delimiter=' ')
         X = pcaData[:,:-1]
         y = pcaData[:,-1]
-        cv = StratifiedKFold(y,k=10)
+        cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
         #clsProb = svm.SVC(kernel='rbf',probability=True)
         cls = svm.SVC(kernel='rbf',probability=False)
         #roc_aucArr = np.zeros((10,1),np.float)
@@ -81,7 +81,7 @@ def computePerformanceMetrics(dataset,dim):
         f1scoreArr = np.zeros((10,1),np.float)
         precisionArr = np.zeros((10,1),np.float)
         recallArr = np.zeros((10,1),np.float)
-        for i,(train,test) in enumerate(cv):
+        for i,(train,test) in enumerate(cv.split(X,y)):
             #probas_ = clsProb.fit(X[train],y[train]).predict_proba(X[test])
             pred = cls.fit(X[train],y[train]).predict(X[test])
             # Compute ROC curve and area the curve

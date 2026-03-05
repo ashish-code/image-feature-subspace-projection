@@ -9,7 +9,7 @@ lowerDims = [32,64,128,256,512]
 
 #imports
 import numpy as np
-from optparse import OptionParser
+import argparse
 import sys
 import os
 from sklearn.decomposition import PCA
@@ -59,7 +59,7 @@ def pcaImgWrdMat(highDim,lowDim):
 #    nCategory = len(catList)
     
     for catName in catList:
-        print '%s : %d : %d\n'%(catName,highDim,lowDim)
+        print('%s : %d : %d\n'%(catName,highDim,lowDim)
         catPosFileName = rootDir+dataset+iwmDir+catName+str(highDim)+iwmext
         catPosData = np.loadtxt(catPosFileName, dtype=np.int, delimiter=' ')
         nPosImages = catPosData.shape[0]
@@ -68,7 +68,7 @@ def pcaImgWrdMat(highDim,lowDim):
         nNegImages = catNegData.shape[0]
         catData = np.vstack((catPosData,catNegData))
         labels = np.vstack((np.ones((nPosImages,1),np.int),np.zeros((nNegImages,1),np.int)))
-        print 'pca...'
+        print('pca...'
         try:
             pcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.pca'
             if os.path.exists(pcaDataFileName): continue
@@ -77,7 +77,7 @@ def pcaImgWrdMat(highDim,lowDim):
             np.savetxt(pcaDataFileName, pcaData, fmt='%f', delimiter=' ')
         except:
             print 'error: PCA : %s : %d : %d' % (catName,highDim,lowDim)
-        print 'ppca...'
+        print('ppca...'
         try:
             ppcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.ppca'
             if os.path.exists(ppcaDataFileName): continue
@@ -86,7 +86,7 @@ def pcaImgWrdMat(highDim,lowDim):
             np.savetxt(ppcaDataFileName, ppcaData, fmt='%f', delimiter=' ')
         except:
             print 'error: PPCA : %s : %d : %d' % (catName,highDim,lowDim)
-        print 'rpca...'
+        print('rpca...'
         try:
             rpcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.rpca'
             if os.path.exists(rpcaDataFileName): continue
@@ -95,7 +95,7 @@ def pcaImgWrdMat(highDim,lowDim):
             np.savetxt(rpcaDataFileName,rpcaData,fmt='%f',delimiter=' ')
         except:
             print 'error: RPCA : %s : %d : %d' % (catName,highDim,lowDim)
-        print 'kpca...'
+        print('kpca...'
         try:
             kpcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.kpca'
             if os.path.exists(kpcaDataFileName): continue
@@ -105,7 +105,7 @@ def pcaImgWrdMat(highDim,lowDim):
         except:
             print 'error: KPCA : %s : %d : %d' % (catName,highDim,lowDim)
                   
-        print 'spca...'
+        print('spca...'
         try:
             spcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.spca'
             if os.path.exists(spcaDataFileName): continue

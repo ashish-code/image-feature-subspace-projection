@@ -9,7 +9,7 @@ lowerDims = [32,64,128,256,512]
 
 #imports
 import numpy as np
-from optparse import OptionParser
+import argparse
 import sys
 import os
 #from sklearn.decomposition import KernelPCA
@@ -58,7 +58,7 @@ def pcaImgWrdMat(highDim,lowDim):
 #    nCategory = len(catList)
     
     for catName in catList:
-        print '%s : %d : %d\n'%(catName,highDim,lowDim)
+        print('%s : %d : %d\n'%(catName,highDim,lowDim)
         catPosFileName = rootDir+dataset+iwmDir+catName+str(highDim)+iwmext
         catPosData = np.loadtxt(catPosFileName, dtype=np.int, delimiter=' ')
         nPosImages = catPosData.shape[0]
@@ -68,7 +68,7 @@ def pcaImgWrdMat(highDim,lowDim):
         catData = np.vstack((catPosData,catNegData))
         labels = np.vstack((np.ones((nPosImages,1),np.int),np.zeros((nNegImages,1),np.int)))
                
-        print 'spca...'
+        print('spca...'
         try:
             spcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.spca'
             if os.path.exists(spcaDataFileName): continue

@@ -11,7 +11,7 @@ lowerDims = [32,64,128,256,512]
 
 #imports
 import numpy as np
-from optparse import OptionParser
+import argparse
 import sys
 from sklearn.decomposition import PCA
 from sklearn.decomposition import KernelPCA
@@ -60,7 +60,7 @@ def pcaImgWrdMat(highDim,lowDim):
 #    nCategory = len(catList)
     
     for catName in catList:
-        print '%s : %d : %d\n'%(catName,highDim,lowDim)
+        print('%s : %d : %d\n'%(catName,highDim,lowDim)
         catPosFileName = rootDir+dataset+iwmDir+catName+str(highDim)+iwmext
         catPosData = np.loadtxt(catPosFileName, dtype=np.int, delimiter=' ')
         nPosImages = catPosData.shape[0]
@@ -69,27 +69,27 @@ def pcaImgWrdMat(highDim,lowDim):
         nNegImages = catNegData.shape[0]
         catData = np.vstack((catPosData,catNegData))
         labels = np.vstack((np.ones((nPosImages,1),np.int),np.zeros((nNegImages,1),np.int)))
-        print 'pca...'
+        print('pca...'
         pcaData = PCA(n_components=lowDim).fit(catData).transform(catData)
         pcaData = np.hstack((pcaData,labels))
         pcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.pca'
         np.savetxt(pcaDataFileName, pcaData, fmt='%f', delimiter=' ')
-        print 'ppca...'
+        print('ppca...'
         ppcaData = ProbabilisticPCA(n_components=lowDim).fit(catData).transform(catData)
         ppcaData = np.hstack((ppcaData,labels))
         ppcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.ppca'
         np.savetxt(ppcaDataFileName, ppcaData, fmt='%f', delimiter=' ')
-        print 'rpca...'
+        print('rpca...'
         rpcaData = RandomizedPCA(n_components=lowDim).fit(catData).transform(catData)
         rpcaData = np.hstack((rpcaData,labels))
         rpcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.rpca'
         np.savetxt(rpcaDataFileName,rpcaData,fmt='%f',delimiter=' ')
-        print 'kpca...'
+        print('kpca...'
         kpcaData = KernelPCA(n_components=lowDim).fit(catData).transform(catData)
         kpcaData = np.hstack((kpcaData,labels))
         kpcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.kpca'
         np.savetxt(kpcaDataFileName, kpcaData, fmt='%f', delimiter=' ')      
-        print 'spca...'
+        print('spca...'
         spcaData = MiniBatchSparsePCA(n_components=lowDim,n_iter=100).fit(catData).transform(catData)
         spcaData = np.hstack((spcaData,labels))
         spcaDataFileName = rootDir+dataset+outputDir+catName+str(highDim)+str(lowDim)+'.spca'

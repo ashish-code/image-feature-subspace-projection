@@ -6,7 +6,7 @@ plot comparative sspca performance for various datasets
 
 
 import numpy as np
-from optparse import OptionParser
+import argparse
 import sys
 import matplotlib.pyplot as plt
 

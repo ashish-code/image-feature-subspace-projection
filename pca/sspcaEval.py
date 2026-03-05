@@ -6,11 +6,11 @@ for various visual datasets
 '''
 
 import numpy as np
-from optparse import OptionParser
+import argparse
 import sys
 from sklearn import svm
 from sklearn.metrics import roc_curve, auc, f1_score, precision_score, recall_score, precision_recall_curve
-from sklearn.cross_validation import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold
 
 #acquire program arguments
 parser = OptionParser()
@@ -52,40 +52,40 @@ def computeSVMscore(highDim,lowDim):
     #acquire the category list    
     '''pca'''
     try:
-        print 'pca'
+        print('pca'
         computePerformanceMetrics(dataset,'pca',highDim,lowDim)
     except:
-        print 'error:%s:%s:%d:%d'%(dataset,'pca',highDim,lowDim)
+        print('error:%s:%s:%d:%d'%(dataset,'pca',highDim,lowDim)
     '''ppca'''
     try:
-        print 'ppca'
+        print('ppca'
         computePerformanceMetrics(dataset,'ppca',highDim,lowDim)
     except:
-        print 'error:%s:%s:%d:%d'%(dataset,'ppca',highDim,lowDim)
+        print('error:%s:%s:%d:%d'%(dataset,'ppca',highDim,lowDim)
     '''rpca'''
     try:
-        print 'rpca'
+        print('rpca'
         computePerformanceMetrics(dataset,'rpca',highDim,lowDim)
     except:
-        print 'error:%s:%s:%d:%d'%(dataset,'rpca',highDim,lowDim)
+        print('error:%s:%s:%d:%d'%(dataset,'rpca',highDim,lowDim)
     '''kpca'''
     try:
-        print 'kpca'
+        print('kpca'
         computePerformanceMetrics(dataset,'kpca',highDim,lowDim)
     except:
-        print 'error:%s:%s:%d:%d'%(dataset,'kpca',highDim,lowDim)
+        print('error:%s:%s:%d:%d'%(dataset,'kpca',highDim,lowDim)
     '''spca'''
     try:
-        print 'spca'
+        print('spca'
         computePerformanceMetrics(dataset,'spca',highDim,lowDim)
     except:
-        print 'error:%s:%s:%d:%d'%(dataset,'spca',highDim,lowDim)
+        print('error:%s:%s:%d:%d'%(dataset,'spca',highDim,lowDim)
     '''sspca'''
     try:
-        print 'sspca'
+        print('sspca'
         computePerformanceMetrics(dataset,'sspca',highDim,lowDim)
     except:
-        print 'error:%s:%s:%d:%d'%(dataset,'sspca',highDim,lowDim)
+        print('error:%s:%s:%d:%d'%(dataset,'sspca',highDim,lowDim)
             
     pass
     
@@ -106,7 +106,7 @@ def computePerformanceMetrics(dataset,method,highDim,lowDim):
         pcaData = np.loadtxt(pcaDataFileName, dtype=np.float,delimiter=' ')
         X = pcaData[:,:-1]
         y = pcaData[:,-1]
-        cv = StratifiedKFold(y,k=10)
+        cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
         clsProb = svm.SVC(kernel='rbf',probability=True)
         cls = svm.SVC(kernel='rbf',probability=False)
         roc_aucArr = np.zeros((10,1),np.float)
@@ -114,7 +114,7 @@ def computePerformanceMetrics(dataset,method,highDim,lowDim):
         f1scoreArr = np.zeros((10,1),np.float)
         precisionArr = np.zeros((10,1),np.float)
         recallArr = np.zeros((10,1),np.float)
-        for i,(train,test) in enumerate(cv):
+        for i,(train,test) in enumerate(cv.split(X,y)):
             #probas_ = clsProb.fit(X[train],y[train]).predict_proba(X[test])
             pred = cls.fit(X[train],y[train]).predict(X[test])
             # Compute ROC curve and area the curve
