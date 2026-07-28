@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this software or its methods, please cite the paper below."
+title: "Subspace Projection Methods for Image Feature Analysis"
+abstract: >-
+  Subspace projection methods (PCA, SPCA, SSPCA, Kernel PCA, Isomap) for visual
+  classification. Structured Sparse PCA with co-clustering outperforms baselines
+  on PASCAL VOC and Caltech benchmarks.
+type: software
+authors:
+    - given-names: Ashish
+      family-names: Gupta
+      orcid: "https://orcid.org/0000-0002-0670-2375"
+repository-code: "https://github.com/ashish-code/image-feature-subspace-projection"
+url: "https://github.com/ashish-code/image-feature-subspace-projection"
+license: MIT
+keywords:
+  - computer-vision
+  - dimensionality-reduction
+  - pca
+  - manifold-learning
+  - image-classification
+preferred-citation:
+  type: conference-paper
+  title: "Subspace Projection Methods for Large Scale Image Data Analysis"
+  authors:
+    - given-names: Ashish
+      family-names: Gupta
+      orcid: "https://orcid.org/0000-0002-0670-2375"
+    - given-names: Alper
+      family-names: Yilmaz
+  collection-title: "2017 IEEE Third International Conference on Multimedia Big Data (BigMM)"
+  start: 260
+  end: 267
+  year: 2017
+  # TODO (optional): add doi
