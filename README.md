@@ -1,5 +1,6 @@
 # Image Feature Subspace Projection
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21635748.svg)](https://doi.org/10.5281/zenodo.21635748)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![MATLAB](https://img.shields.io/badge/MATLAB-original-0076A8?logo=mathworks&logoColor=white)](matlab/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4+-F7931E)](https://scikit-learn.org/)
