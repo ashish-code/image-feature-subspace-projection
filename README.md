@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="docs/banner.svg" alt="Feature Subspace Projection — group-structured sparse coding for visual classification" width="100%">
+</div>
+
 # Image Feature Subspace Projection
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21635748.svg)](https://doi.org/10.5281/zenodo.21635748)
