@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" font-family="'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B1120"/><stop offset="1" stop-color="#111C33"/></linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.45" r="0.5"><stop offset="0" stop-color="#818CF8" stop-opacity="0.28"/><stop offset="1" stop-color="#818CF8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="300" rx="16" fill="url(#bg)"/>
+  <rect width="1200" height="300" rx="16" fill="url(#glow)"/>
+  <rect x="1.5" y="1.5" width="1197" height="297" rx="15" fill="none" stroke="#818CF8" stroke-opacity="0.22"/>
+  <rect x="64" y="70" width="4" height="150" rx="2" fill="#818CF8"/>
+  <text x="88" y="86" fill="#818CF8" font-size="15" font-weight="700" letter-spacing="3">STRUCTURED SPARSE PCA · BigMM 2017</text>
+  <text x="86" y="150" fill="#F4F7FB" font-size="42" font-weight="800" letter-spacing="0.5">Feature Subspace Projection</text>
+  <text x="88" y="192" fill="#9AA7BD" font-size="21">Linear &amp; non-linear subspace projection for large-scale</text><text x="88" y="219" fill="#9AA7BD" font-size="21">visual classification — group-structured sparse coding.</text>
+  <g font-size="15" font-weight="600" fill="#C7D2E4"><g><rect x="88" y="244" width="69" height="30" rx="15" fill="#18233A" stroke="#818CF8" stroke-opacity="0.45"/><text x="122.5" y="264" text-anchor="middle">SSPCA</text></g><g><rect x="167" y="244" width="118" height="30" rx="15" fill="#18233A" stroke="#818CF8" stroke-opacity="0.45"/><text x="226" y="264" text-anchor="middle">Group Lasso</text></g><g><rect x="295" y="244" width="126" height="30" rx="15" fill="#18233A" stroke="#818CF8" stroke-opacity="0.45"/><text x="358" y="264" text-anchor="middle">scikit-learn</text></g><g><rect x="431" y="244" width="77" height="30" rx="15" fill="#18233A" stroke="#818CF8" stroke-opacity="0.45"/><text x="469.5" y="264" text-anchor="middle">MATLAB</text></g></g>
+  <g>
+      <path d="M876,206 L1060,206 L1140,152 L956,152 Z" fill="#818CF8" fill-opacity="0.12" stroke="#818CF8" stroke-width="1.8"/>
+      <g stroke="#818CF8" stroke-width="1.3" stroke-dasharray="4 4" stroke-opacity="0.6"><path d="M952,106 L958,176"/><path d="M1002,92 L1006,172"/><path d="M1052,112 L1054,178"/><path d="M1096,98 L1092,166"/></g>
+      <g fill="#818CF8"><circle cx="952" cy="102" r="5.5"/><circle cx="1002" cy="88" r="5.5"/><circle cx="1052" cy="108" r="5.5"/><circle cx="1096" cy="94" r="5.5"/></g>
+      <g fill="#818CF8" fill-opacity="0.55"><circle cx="958" cy="176" r="4"/><circle cx="1006" cy="172" r="4"/><circle cx="1054" cy="178" r="4"/><circle cx="1092" cy="166" r="4"/></g>
+    </g>
+</svg>
